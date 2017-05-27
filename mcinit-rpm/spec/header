@@ -8,7 +8,7 @@ Summary: Micro Cloud Init
 Version: 1.0
 
 # The release number of your package
-Release: 1
+Release: 4
 
 # Any license you wish to list
 License: GNU GPL
@@ -40,6 +40,7 @@ Source0: %{name}.tar
 # A more verbose description of your package
 %description
 This is designed to use Packet Host MetaData Service to automatically set hostname and .ssh keys
+Source: https://github.com/glennswest/mcinit
 
 # You probably do not need to change this
 %define debug_package %{nil}

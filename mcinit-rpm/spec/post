@@ -1,1 +1,2 @@
 %post
+/usr/local/bin/mcinit > /tmp/mcinit.out
