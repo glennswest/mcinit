@@ -2,13 +2,13 @@
 Name: mcinit-rpm
 
 # A short summary of your package
-Summary: Micro Cloud Init
+Summary: Micro Cloud Init for Packet Host
 
 # The version of your package
 Version: 1.0
 
 # The release number of your package
-Release: 4
+Release: 6
 
 # Any license you wish to list
 License: GNU GPL

@@ -12,6 +12,8 @@ struct string {
     size_t len;
 };
 
+void append_file(char *thepath, char *thetext);
+
 #include <libgen.h>
 
 char *current_time()
@@ -22,6 +24,11 @@ char *current_time()
   time ( &rawtime );
   timeinfo = localtime ( &rawtime );
   return ( asctime (timeinfo) );
+}
+
+void logit(char *thetext)
+{
+     append_file("/tmp/mcinit.out",thetext);
 }
 
 void mkdir_recursive(char *path)
@@ -108,12 +115,12 @@ FILE *f;
 void append_file(char *thepath,char *thestring)
 {
 FILE *f;
-        f = fopen(thepath,"w+");
+        f = fopen(thepath,"a+");
         if (f == NULL){
            printf("Cannot append to %s - Value %s\n",thepath,thestring);
            return;
            }
-        fprintf(f, "%s\n", thestring);
+        fprintf(f, "%s", thestring);
         fclose(f);
 }
 
@@ -121,12 +128,14 @@ void set_hostname(json_object * jobj)
 {
 char *hostname;
 struct json_object *obj;
+char buf[256];
 
     json_object_object_get_ex (jobj,"hostname",&obj);
     hostname = (char *)json_object_to_json_string(obj);
     trim(hostname);
-    printf("Setting hostname to %s\n",hostname);
     write_file("/etc/hostname",hostname);
+    sprintf(buf,"Setting hostname to %s\n",hostname);
+    logit(buf);
 }
 
 void set_ssh_keys(json_object * jobj)
@@ -172,7 +181,8 @@ int main(void)
     curl_easy_cleanup(curl);
     }
   sprintf(status,"mcinit: Updated System Settings at %s",current_time());
-  write_file("/tmp/mcinit.out",status);
+  truncate_file("/tmp/mcinit.out");
+  logit(status);
   json_object *jobj = json_tokener_parse(s.ptr);
   set_hostname(jobj);
   set_ssh_keys(jobj);
