@@ -8,7 +8,7 @@ Summary: Micro Cloud Init for Packet Host
 Version: 1.0
 
 # The release number of your package
-Release: 6
+Release: 7
 
 # Any license you wish to list
 License: GNU GPL

@@ -1,1 +1,3 @@
-pkg -t node6-linux -o mcinit server.js
+make
+cd mcinit-rpm
+./build.sh

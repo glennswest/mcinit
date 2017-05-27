@@ -145,7 +145,7 @@ char *key;
 int i;
 
     json_object_object_get_ex (jobj,"ssh_keys",&obj);
-    mkdir_recursive("/root/.ssh/authorized_keys");
+    mkdir_recursive("/root/.ssh");
     truncate_file("/root/.ssh/authorized_keys");
     for(i = 0; i < json_object_array_length(obj); i++) {
        okey = json_object_array_get_idx(obj, i);
