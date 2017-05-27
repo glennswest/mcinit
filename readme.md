@@ -4,7 +4,7 @@ Designed to work with Packet Net Metadata Server.
 Does the following:
 
         1. Read the https://metadata.packet.net/metadata
-	2. Updates the hostname provided by packet.net
+        2. Updates the hostname provided by packet.net
         3. Create /root/.ssh
         4. Writes the provided keys to /root/.ssh/authorised_hosts
 
