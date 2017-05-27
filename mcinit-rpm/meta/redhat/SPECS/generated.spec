@@ -1,0 +1,1 @@
+/root/mcinit/mcinit-rpm/meta/../generated.spec
