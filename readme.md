@@ -17,9 +17,9 @@ mcnit is packaged as a rhel7 compatible RPM.
    rpm packaging provided by togo https://github.com/genereese/togo
 
 ## Build Enviroment:
-yum install yum install https://github.com/genereese/togo/releases/download/v2.3r7/togo-2.3-7.noarch.rpm
-yum install libcurl
-yum install libcurl-devel
-yum install json-c-devel
+yum install https://github.com/genereese/togo/releases/download/v2.3r7/togo-2.3-7.noarch.rpm  
+yum install libcurl  
+yum install libcurl-devel  
+yum install json-c-devel  
 
 
