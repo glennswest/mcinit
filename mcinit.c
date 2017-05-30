@@ -151,6 +151,7 @@ int i;
        okey = json_object_array_get_idx(obj, i);
        key = (char *)json_object_to_json_string(okey);
        trim(key);
+       strcat(key,"\n");
        append_file("/root/.ssh/authorized_keys",key);
        }
 }
