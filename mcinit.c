@@ -88,6 +88,25 @@ char *result;
         return(result);
 }
 
+char *fixslash(char *thestring)
+{
+char *ptr;
+char *result;
+//   From \/ to /
+
+        ptr = thestring;
+        result = thestring;
+	while(*ptr != '\0'){
+           if (*ptr == '\\' && *(ptr + 1) == '/'){
+              ptr++;
+             } else {
+               *result++ = *ptr++;
+             }
+           }
+        *result = '\0';
+        return(result);
+}
+
 void truncate_file(char *thepath)
 {
 FILE *f;
@@ -108,7 +127,8 @@ FILE *f;
            printf("Cannot write to %s - Value %s\n",thepath,thestring);
            return;
            }
-        fprintf(f, "%s\n", thestring);
+        fwrite(thestring, 1, strlen(thestring),  f);
+        fprintf(f, "\n");
         fclose(f);
 }
 
@@ -120,7 +140,8 @@ FILE *f;
            printf("Cannot append to %s - Value %s\n",thepath,thestring);
            return;
            }
-        fprintf(f, "%s", thestring);
+        fwrite(thestring, 1, strlen(thestring),  f);
+        fprintf(f, "\n");
         fclose(f);
 }
 
@@ -151,7 +172,7 @@ int i;
        okey = json_object_array_get_idx(obj, i);
        key = (char *)json_object_to_json_string(okey);
        trim(key);
-       strcat(key,"\n");
+       fixslash(key);
        append_file("/root/.ssh/authorized_keys",key);
        }
 }
